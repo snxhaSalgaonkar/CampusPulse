@@ -14,4 +14,18 @@ const validate = (schema) => (req, res, next) => {
     }
 };
 
-module.exports = validate;
+// module.exports = validate;
+
+// const { errorResponse } = require('../utils/apiResponse');
+
+// const validate = (schema, property = 'body') => (req, res, next) => {
+//     const { error } = schema.validate(req[property], { abortEarly: false });
+//     if (error) {
+//         const errors = error.details.map(err => err.message);
+//         return errorResponse(res, 'Validation failed', errors, 422);
+//     }
+//     next();
+// };
+
+// module.exports = validate;
+

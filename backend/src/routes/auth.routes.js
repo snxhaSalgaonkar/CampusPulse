@@ -1,10 +1,20 @@
+// const express = require('express');
+// const router = express.Router();
+// const { successResponse } = require('../utils/apiResponse');
+
+// // Example route
+// router.post('/login', (req, res) => {
+//     successResponse(res, 200, 'Login route placeholder');
+// });
+
+// module.exports = router;
 const express = require('express');
 const router = express.Router();
-const { successResponse } = require('../utils/apiResponse');
+const authController = require('../controllers/auth.controller');
+const { authenticate } = require('../middleware/auth.middleware');
 
-// Example route
-router.post('/login', (req, res) => {
-    successResponse(res, 200, 'Login route placeholder');
-});
+router.post('/register', authController.register);
+router.post('/login', authController.login);
+router.get('/me', authenticate, authController.getMe);
 
 module.exports = router;

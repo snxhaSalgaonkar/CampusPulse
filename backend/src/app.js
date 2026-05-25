@@ -41,4 +41,8 @@ app.use((req, res, next) => {
 // 7. Global Error Handler
 app.use(errorHandler);
 
+const apiRoutes = require('./routes');
+app.use('/api/v1', apiRoutes);
+
+
 module.exports = app;
