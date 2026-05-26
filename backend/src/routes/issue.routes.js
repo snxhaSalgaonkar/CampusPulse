@@ -14,9 +14,9 @@ const validate = require('../middleware/validate.middleware');
 const { createIssueSchema, updateStatusSchema, assignIssueSchema } = require('../validations/issue.validation');
 const { uploadIssueImages } = require('../middleware/upload.middleware');
 // Assuming auth middlewares exist
-const { authenticate, authorizeRoles } = require('../middleware/auth.middleware');
+const { protect, authorizeRoles } = require('../middleware/auth.middleware');
 
-router.use(authenticate); // Protect all issue routes
+router.use(protect); // Protect all issue routes
 
 router.route('/')
     .post(validate(createIssueSchema), issueController.createIssue)

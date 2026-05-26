@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const assignmentController = require('../controllers/assignment.controller');
-const { authenticate, authorizeRoles } = require('../middleware/auth.middleware');
+const { protect, authorizeRoles } = require('../middleware/auth.middleware');
 
-router.use(authenticate);
+router.use(protect);
 router.use(authorizeRoles('admin'));
 
 router.get('/', assignmentController.getAssignments);

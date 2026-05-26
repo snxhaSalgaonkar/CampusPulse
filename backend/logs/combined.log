@@ -1,2 +1,112 @@
 2026-05-23 22:33:32 [[32minfo[39m]: Firebase Admin initialized successfully 
 2026-05-23 22:33:32 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 21:48:50 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 21:48:50 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 21:49:01 [[31merror[39m]: NotFoundError: Can't find /api/v1/health on this server!
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\app.js:38:10
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:342:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:688:15
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:276:14)
+    at Function.handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:186:3)
+    at router (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:60:12) 
+2026-05-26 21:51:47 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 21:51:47 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 21:53:05 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 21:53:05 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 21:53:17 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 21:53:17 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 21:53:22 [[31merror[39m]: TypeError: Invalid status code: {"timestamp":"2026-05-26T16:23:22.844Z","uptime":5.3774767}. Status code must be an integer.
+    at ServerResponse.status (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\express\lib\response.js:67:11)
+    at exports.successResponse (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\apiResponse.js:39:16)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\app.js:27:5
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12) 
+2026-05-26 21:53:46 [[31merror[39m]: TypeError: Invalid status code: {"timestamp":"2026-05-26T16:23:46.359Z","uptime":28.8922931}. Status code must be an integer.
+    at ServerResponse.status (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\express\lib\response.js:67:11)
+    at exports.successResponse (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\apiResponse.js:39:16)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\app.js:27:5
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12) 
+2026-05-26 21:54:21 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 21:54:21 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 21:58:10 [[31merror[39m]: NotFoundError: Can't find /api/v1/auth/register on this server!
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\app.js:38:10
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:342:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:688:15
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:276:14)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:688:15
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:276:14) 
+2026-05-26 22:00:31 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'user')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\auth.controller.js:8:87
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5) 
+2026-05-26 22:01:52 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'user')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\auth.controller.js:8:87
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5) 
+2026-05-26 22:02:14 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'user')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\auth.controller.js:8:87
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5) 
+2026-05-26 22:05:39 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 22:05:39 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 22:06:38 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 22:06:38 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 22:08:10 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 22:08:10 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 22:08:22 [[31merror[39m]: Error: Invalid role specified.
+    at AuthService.registerUser (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\auth.service.js:8:56)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\auth.controller.js:8:36
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12) 
+2026-05-26 22:12:28 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 22:12:28 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 22:12:37 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 22:12:37 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 22:21:13 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 22:21:13 [[32minfo[39m]: Server running in development mode on port 5000 

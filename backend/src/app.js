@@ -9,6 +9,12 @@ const { successResponse } = require('./utils/apiResponse');
 
 const app = express();
 
+// Initialize repositories on app.locals so controllers can access them
+const UserRepository = require('./repositories/user.repository');
+app.locals.repositories = {
+    user: new UserRepository()
+};
+
 // 1. Security Middleware
 setupSecurity(app);
 
@@ -23,15 +29,15 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // 4. Health Check
-app.get('/api/health', (req, res) => {
-    successResponse(res, 200, 'Server is healthy', {
+app.get('/api/v1/health', (req, res) => {
+    successResponse(res, 'Server is healthy', {
         timestamp: new Date().toISOString(),
         uptime: process.uptime()
     });
 });
 
 // 5. API Routes
-app.use('/api', routes);
+app.use('/api/v1', routes);
 
 // 6. 404 Handler
 app.use((req, res, next) => {
@@ -41,8 +47,7 @@ app.use((req, res, next) => {
 // 7. Global Error Handler
 app.use(errorHandler);
 
-const apiRoutes = require('./routes');
-app.use('/api/v1', apiRoutes);
+
 
 
 module.exports = app;

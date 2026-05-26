@@ -3,11 +3,11 @@ const router = express.Router();
 const categoryController = require('../controllers/category.controller');
 const validate = require('../middleware/validate.middleware');
 const { createCategorySchema, updateCategorySchema } = require('../validations/category.validation');
-const { authenticate, authorizeRoles } = require('../middleware/auth.middleware');
+const { protect, authorizeRoles } = require('../middleware/auth.middleware');
 
 router.get('/', categoryController.getCategories);
 
-router.use(authenticate);
+router.use(protect);
 router.use(authorizeRoles('admin'));
 
 router.post('/', validate(createCategorySchema), categoryController.createCategory);

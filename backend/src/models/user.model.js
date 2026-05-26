@@ -2,7 +2,7 @@ const BaseModel = require('./base.model');
 const { isRequired, isValidEmail, isValidEnum } = require('../utils/validators');
 
 class User extends BaseModel {
-    static ROLES = ['student', 'faculty', 'admin'];
+    static ROLES = ['user', 'officer', 'admin'];
 
     constructor(data = {}) {
         super(data);
@@ -11,7 +11,7 @@ class User extends BaseModel {
         this.email = data.email || '';
         this.phone = data.phone || '';
         this.department = data.department || '';
-        this.role = data.role || 'student';
+        this.role = data.role || 'user';
         this.profileImage = data.profileImage || '';
         this.isVerified = data.isVerified || false;
         this.deviceToken = data.deviceToken || '';

@@ -14,7 +14,7 @@ const validate = (schema) => (req, res, next) => {
     }
 };
 
-// module.exports = validate;
+module.exports = validate;
 
 // const { errorResponse } = require('../utils/apiResponse');
 
