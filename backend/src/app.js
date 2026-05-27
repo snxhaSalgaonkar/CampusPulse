@@ -11,8 +11,10 @@ const app = express();
 
 // Initialize repositories on app.locals so controllers can access them
 const UserRepository = require('./repositories/user.repository');
+const IssueRepository = require('./repositories/issue.repository');
 app.locals.repositories = {
-    user: new UserRepository()
+    user: new UserRepository(),
+    issue: new IssueRepository()
 };
 
 // 1. Security Middleware

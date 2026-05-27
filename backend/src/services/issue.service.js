@@ -75,6 +75,18 @@ class IssueService extends BaseService {
         return issue;
     }
 
+    async addImagesToIssue(issueId, imageUrls, issueRepository) {
+        const issue = await issueRepository.findById(issueId);
+        if (!issue) throw new Error('Issue not found');
+
+        const updatedImages = [...(issue.images || []), ...imageUrls];
+
+        return await issueRepository.update(issueId, {
+            images: updatedImages,
+            updatedAt: this.getCurrentTimestamp()
+        });
+    }
+
     validateIssuePayload(payload) {
         this.validateRequiredFields(payload, ['title', 'description', 'locationId', 'categoryId']);
         if (payload.title.length < 5 || payload.title.length > 100) {

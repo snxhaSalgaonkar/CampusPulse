@@ -2,6 +2,7 @@ const asyncHandler = require('../utils/asyncHandler');
 const { successResponse } = require('../utils/apiResponse');
 const IssueService = require('../services/issue.service');
 const QueryFeatures = require('../utils/queryFeatures');
+const cloudinaryService = require('../services/cloudinary.service');
 
 const issueService = new IssueService();
 
@@ -45,7 +46,23 @@ exports.assignIssue = asyncHandler(async (req, res) => {
 });
 
 exports.uploadImages = asyncHandler(async (req, res) => {
-    // Normally you'd pass req.files to a cloud storage service here
-    const uploadedFiles = req.files.map(file => file.originalname);
-    return successResponse(res, 'Images processed', { files: uploadedFiles });
+    if (!req.files || req.files.length === 0) {
+        throw new Error('No files provided');
+    }
+
+    // Upload all files to Cloudinary concurrently
+    const uploadPromises = req.files.map(file => 
+        cloudinaryService.uploadImageBuffer(file.buffer)
+    );
+    
+    const imageUrls = await Promise.all(uploadPromises);
+
+    // Save URLs to the issue
+    const issue = await issueService.addImagesToIssue(
+        req.params.issueId,
+        imageUrls,
+        req.app.locals.repositories.issue
+    );
+
+    return successResponse(res, 'Images uploaded and saved successfully', issue);
 });

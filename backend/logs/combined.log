@@ -139,3 +139,129 @@
     at async C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\auth.controller.js:13:19 
 2026-05-26 22:35:09 [[32minfo[39m]: Firebase Admin initialized successfully 
 2026-05-26 22:35:09 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 22:37:58 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 22:37:58 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-26 22:59:01 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-26 22:59:02 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-27 11:12:03 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-27 11:12:03 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-27 11:12:11 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'findById')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\issue.controller.js:24:59
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at param (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:600:14)
+    at param (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:610:14) 
+2026-05-27 11:33:16 [[31merror[39m]: AuthenticationError: You are not logged in. Please provide a token.
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\middleware\auth.middleware.js:16:15
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:342:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5)
+    at Function.handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:186:3)
+    at router (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17) 
+2026-05-27 11:33:36 [[31merror[39m]: AuthenticationError: Invalid or expired token.
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\middleware\auth.middleware.js:30:15
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:342:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5)
+    at Function.handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:186:3)
+    at router (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17) 
+2026-05-27 11:34:03 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'findAll')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\issue.controller.js:17:60
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5) 
+2026-05-27 11:34:54 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'findAll')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\issue.controller.js:17:60
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5) 
+2026-05-27 11:38:41 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-27 11:38:41 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-27 11:38:52 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-27 11:38:52 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-27 11:41:08 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-27 11:41:08 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-27 11:49:45 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'title')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\base.service.js:16:55
+    at Array.filter (<anonymous>)
+    at IssueService.validateRequiredFields (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\base.service.js:16:32)
+    at IssueService.validateIssuePayload (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\issue.service.js:79:14)
+    at IssueService.createIssue (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\issue.service.js:11:14)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\issue.controller.js:10:38
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\middleware\validate.middleware.js:11:9 
+2026-05-27 11:50:47 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'title')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\base.service.js:16:55
+    at Array.filter (<anonymous>)
+    at IssueService.validateRequiredFields (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\base.service.js:16:32)
+    at IssueService.validateIssuePayload (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\issue.service.js:79:14)
+    at IssueService.createIssue (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\issue.service.js:11:14)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\issue.controller.js:10:38
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\middleware\validate.middleware.js:11:9 
+2026-05-27 11:57:32 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'title')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\base.service.js:16:55
+    at Array.filter (<anonymous>)
+    at IssueService.validateRequiredFields (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\base.service.js:16:32)
+    at IssueService.validateIssuePayload (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\issue.service.js:79:14)
+    at IssueService.createIssue (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\issue.service.js:11:14)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\issue.controller.js:10:38
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\middleware\validate.middleware.js:11:9 
+2026-05-27 11:57:46 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'title')
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\base.service.js:16:55
+    at Array.filter (<anonymous>)
+    at IssueService.validateRequiredFields (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\base.service.js:16:32)
+    at IssueService.validateIssuePayload (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\issue.service.js:79:14)
+    at IssueService.createIssue (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\services\issue.service.js:11:14)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\controllers\issue.controller.js:10:38
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\utils\asyncHandler.js:3:25
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\route.js:157:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\middleware\validate.middleware.js:11:9 
+2026-05-27 12:11:41 [[31merror[39m]: NotFoundError: Can't find /api/v1/issues/bcb8736f-47f8-49bb-8291-b5152cd8d551/images on this server!
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\src\app.js:46:10
+    at Layer.handleRequest (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:342:13)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:291:5)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:688:15
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:276:14)
+    at C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:688:15
+    at next (C:\Users\Sneha\Desktop\sepmProject\CampusPulse\backend\node_modules\router\index.js:276:14) 
+2026-05-27 12:21:41 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-27 12:21:41 [[32minfo[39m]: Server running in development mode on port 5000 
+2026-05-27 12:21:54 [[32minfo[39m]: Firebase Admin initialized successfully 
+2026-05-27 12:21:54 [[32minfo[39m]: Server running in development mode on port 5000 
