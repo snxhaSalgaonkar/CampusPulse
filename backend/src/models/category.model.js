@@ -8,6 +8,7 @@ class Category extends BaseModel {
         this.name = data.name || '';
         this.icon = data.icon || '';
         this.color = data.color || '#000000';
+        this.defaultAuthorityId = data.defaultAuthorityId || '';
     }
 
     validate() {
@@ -22,7 +23,8 @@ class Category extends BaseModel {
             categoryId: this.categoryId,
             name: this.name,
             icon: this.icon,
-            color: this.color
+            color: this.color,
+            defaultAuthorityId: this.defaultAuthorityId
         };
     }
 }

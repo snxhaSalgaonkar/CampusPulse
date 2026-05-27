@@ -10,6 +10,7 @@ const assignmentRoutes = require('./assignment.routes');
 const analyticsRoutes = require('./analytics.routes');
 const categoryRoutes = require('./category.routes');
 const locationRoutes = require('./location.routes');
+const authorityRoutes = require('./authority.routes');
 
 // Version 1 API Routes Map
 router.use('/auth', authRoutes);
@@ -21,5 +22,6 @@ router.use('/assignments', assignmentRoutes);
 router.use('/analytics', analyticsRoutes);
 router.use('/categories', categoryRoutes);
 router.use('/locations', locationRoutes);
+router.use('/authorities', authorityRoutes);
 
 module.exports = router;

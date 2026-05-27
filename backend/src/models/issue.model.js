@@ -21,6 +21,8 @@ class Issue extends BaseModel {
         this.commentCount = data.commentCount || 0;
         this.isResolved = data.isResolved || false;
         this.resolvedAt = data.resolvedAt || null;
+        this.assignedAuthority = data.assignedAuthority || null;
+        this.assignmentSource = data.assignmentSource || 'category_mapping';
     }
 
     validate() {
@@ -86,6 +88,8 @@ class Issue extends BaseModel {
             createdAt: this.createdAt,
             updatedAt: this.updatedAt,
             resolvedAt: this.resolvedAt,
+            assignedAuthority: this.assignedAuthority,
+            assignmentSource: this.assignmentSource
         };
     }
 }

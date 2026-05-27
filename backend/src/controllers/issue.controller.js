@@ -7,8 +7,11 @@ const cloudinaryService = require('../services/cloudinary.service');
 const issueService = new IssueService();
 
 exports.createIssue = asyncHandler(async (req, res) => {
+    // Automatically use the authenticated user's ID for reportedBy
+    req.body.reportedBy = req.user.uid || req.user.userId;
+    
     // Note: req.app.locals.repositories is injected at app startup
-    const issue = await issueService.createIssue(req.body, req.app.locals.repositories.issue);
+    const issue = await issueService.createIssue(req.body, req.app.locals.repositories);
     return successResponse(res, 'Issue created successfully', issue, 201);
 });
 

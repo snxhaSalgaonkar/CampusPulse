@@ -7,21 +7,59 @@ const DuplicateIssueError = require('../utils/errors/business/DuplicateIssueErro
 const dateHelper = require('../utils/helpers/date.helper');
 
 class IssueService extends BaseService {
-    async createIssue(issueData, issueRepository) {
+    async createIssue(issueData, repositories) {
         this.validateIssuePayload(issueData);
+
+        // Fetch category to validate and get default authority
+        let categoryRepository;
+        let authorityRepository;
+        let issueRepository;
+        
+        if (repositories && repositories.issue) {
+            issueRepository = repositories.issue;
+            categoryRepository = repositories.category || new (require('../repositories/category.repository'))();
+            authorityRepository = repositories.authority;
+        } else {
+            // fallback if someone still passes issueRepository directly (e.g. tests)
+            issueRepository = repositories;
+            categoryRepository = new (require('../repositories/category.repository'))();
+            authorityRepository = new (require('../repositories/authority.repository'))();
+        }
+
+        const category = await categoryRepository.findById(issueData.categoryId);
+        if (!category) {
+            const ValidationError = require('../utils/errors/ValidationError');
+            throw new ValidationError('Invalid category selected');
+        }
 
         const isDuplicate = await this.detectDuplicateIssues(issueData, issueRepository);
         if (isDuplicate) throw new DuplicateIssueError('A similar issue has already been reported.');
 
+        // Fetch mapped authority
+        const authority = await authorityRepository.findById(category.defaultAuthorityId);
+        
         const newIssue = {
             ...issueData,
             status: IssueStatus.REPORTED,
             priority: this.calculatePriority(issueData),
+            assignedAuthority: authority ? {
+                authorityId: authority.authorityId,
+                name: authority.name
+            } : null,
+            assignmentSource: 'category_mapping',
             createdAt: this.getCurrentTimestamp(),
             updatedAt: this.getCurrentTimestamp()
         };
 
-        return await issueRepository.create(newIssue);
+        const createdIssue = await issueRepository.create(newIssue);
+
+        // Prepend/append the issue to the authority's issues list in Firebase
+        if (authority) {
+            const { db } = require('../config/firebase.config');
+            await db.ref(`authorities/${authority.authorityId}/issues/${createdIssue.issueId}`).set(true);
+        }
+
+        return createdIssue;
     }
 
     async updateIssueStatus(issueId, newStatus, issueRepository) {
