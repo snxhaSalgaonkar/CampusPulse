@@ -13,7 +13,7 @@ const protect = asyncHandler(async (req, res, next) => {
     }
 
     if (!token) {
-        throw new AuthenticationError('You are not logged in. Please provide a token.');
+        throw new AuthenticationError('Invalid or expired token');
     }
 
     try {
@@ -27,14 +27,14 @@ const protect = asyncHandler(async (req, res, next) => {
         req.user = decoded; // Temporary attachment until DB logic is added
         next();
     } catch (err) {
-        throw new AuthenticationError('Invalid or expired token.');
+        throw new AuthenticationError('Invalid or expired token');
     }
 });
 
 const authorizeRoles = (...roles) => {
     return (req, res, next) => {
         if (!req.user || !roles.includes(req.user.role)) {
-            throw new AuthorizationError('You do not have permission to perform this action.');
+            throw new AuthorizationError('Access denied');
         }
         next();
     };

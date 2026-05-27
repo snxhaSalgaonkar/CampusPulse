@@ -9,7 +9,10 @@ const limiter = rateLimit({
     limit: 100, // Limit each IP to 100 requests per `window`
     standardHeaders: 'draft-7',
     legacyHeaders: false,
-    message: 'Too many requests from this IP, please try again after 15 minutes',
+    message: {
+        success: false,
+        message: 'Too many requests, please try again later'
+    },
 });
 
 const setupSecurity = (app) => {

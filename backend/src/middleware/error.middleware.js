@@ -11,11 +11,11 @@ const errorHandler = (err, req, res, next) => {
 
     // JWT Errors
     if (err.name === 'JsonWebTokenError') {
-        error.message = 'Invalid token. Please log in again.';
+        error.message = 'Invalid or expired token';
         error.statusCode = 401;
     }
     if (err.name === 'TokenExpiredError') {
-        error.message = 'Your token has expired. Please log in again.';
+        error.message = 'Invalid or expired token';
         error.statusCode = 401;
     }
 
@@ -34,12 +34,12 @@ const errorHandler = (err, req, res, next) => {
 
     // Production Error Response (hide stack trace)
     if (err.isOperational) {
-        return errorResponse(res, statusCode, message);
+        return errorResponse(res, message, [], statusCode);
     }
 
     // Programming or other unknown error: don't leak error details
     logger.error('ERROR 💥', err);
-    return errorResponse(res, 500, 'Something went very wrong!');
+    return errorResponse(res, 'Something went very wrong!', [], 500);
 };
 
 module.exports = errorHandler;
