@@ -1,0 +1,224 @@
+# CampusPulse Frontend Architecture & Requirements Plan
+
+This document outlines the architecture, requirements, and design for the CampusPulse Flutter frontend. **Crucially, the frontend operates entirely as a consumer of the existing Node.js/Express backend.** It does not communicate directly with Firebase or Cloudinary, ensuring all business logic, role validation, and secure uploads remain on the server.
+
+---
+
+## 1. Frontend Domain Entities
+
+Based on the existing backend API and response structures, the following domain entities will be mapped in the Flutter application. 
+
+### Core Entities
+*   **`User`**:
+    *   **Purpose**: Represents the authenticated user (student, officer, or admin).
+    *   **Fields**: `userId` (String), `name` (String), `email` (String), `role` (Role Enum), `profileImage` (String, nullable), `createdAt` (DateTime).
+*   **`Issue`**:
+    *   **Purpose**: Represents a reported campus issue.
+    *   **Fields**: `issueId` (String), `title` (String), `description` (String), `categoryId` (String), `status` (IssueStatus Enum), `urgency` (Urgency Enum), `assignedAuthority` (Authority, nullable), `imageUrls` (List<String>), `createdBy` (UserSummary), `createdAt` (DateTime).
+*   **`Authority`**:
+    *   **Purpose**: Represents a department handling issues.
+    *   **Fields**: `authorityId` (String), `name` (String), `contactEmail` (String, nullable).
+*   **`Category`**:
+    *   **Purpose**: Represents issue classifications (e.g., WiFi, Plumbing).
+    *   **Fields**: `categoryId` (String), `name` (String).
+
+### Entity Relationships
+*   **Authority (1) ↔ Issues (Many)**: One Authority can manage many Issues. Each Issue belongs to exactly one assigned authority.
+
+### Utility / Response Entities
+*   **`AuthResponse`**: `token` (String), `user` (User).
+*   **`PaginationResponse<T>`**: `data` (List<T>), `currentPage` (int), `totalPages` (int), `totalItems` (int), `hasNextPage` (bool).
+*   **`ApiError`**: `statusCode` (int), `message` (String), `errors` (Map<String, dynamic>, nullable).
+
+### Enums
+*   **`Role`**: `user`, `officer`, `admin`
+*   **`IssueStatus`**: `reported`, `in_progress`, `resolved`, `rejected`
+*   **`Urgency`**: `low`, `medium`, `high`, `critical`
+
+---
+
+## 2. Frontend Layered Architecture
+
+We will implement a **Feature-First Layered Architecture** using **Riverpod** for state management and **Dio** for networking.
+
+*   **Presentation Layer (UI)**: Contains Flutter Widgets and Screens. Widgets only interact with Riverpod Providers (Controllers), never directly with Repositories or APIs.
+*   **State/Controller Layer (Riverpod)**: Acts as the intermediary. Exposes state (e.g., `AsyncValue<List<Issue>>`) to the UI and handles user intents by calling Repositories.
+*   **Repository Layer**: Abstracts data sources. Transforms raw DTOs (Data Transfer Objects) from the network into Domain Entities for the app.
+    *   `IssueRepository` methods will include: `getIssues()`, `createIssue()`, `getIssuesByAuthority()`, `updateIssueStatus()`, `getAuthorityDashboardIssues()`.
+*   **Service/API Layer (Dio)**: Handles raw HTTP requests to the Node.js backend. Manages headers, tokens, and multipart form data.
+*   **Core/Shared Utilities**: Contains themes, router configuration, secure storage wrappers, and global constants.
+
+---
+
+## 3. Data Flow
+
+### Authentication Flow
+1.  User enters credentials in the UI.
+2.  `AuthController` calls `AuthRepository.login()`.
+3.  `AuthRepository` uses the Dio Client to send a `POST /api/v1/auth/login`.
+4.  Backend validates and returns a JWT and user JSON.
+5.  `AuthRepository` saves the JWT via `flutter_secure_storage`.
+6.  `AuthController` updates the global `AuthState` to authenticated.
+7.  Router listener detects the state change and redirects to the appropriate dashboard.
+
+### Authority/Officer Role Flow
+1.  Authority user logs in and is routed to the Authority Dashboard.
+2.  UI requests data by watching `authorityIssuesProvider` and `authorityDashboardProvider`.
+3.  Provider fetches data via `IssueRepository.getIssuesByAuthority()`.
+4.  User filters issues by status (e.g., `reported`, `in_progress`).
+5.  User views issue details and triggers an update via `issueStatusUpdateProvider`.
+6.  `IssueRepository.updateIssueStatus()` sends a `PATCH` request to the backend.
+7.  Backend validates role, updates the DB, and returns the updated issue.
+8.  Frontend invalidates the `authorityIssuesProvider` state, refreshing the dashboard.
+
+### Issue Creation Flow
+1.  User fills out the form and selects images via `image_picker`.
+2.  `IssueFormController` packages the data and calls `IssueRepository.createIssue()`.
+3.  Repository converts the data and image files into a `FormData` object (Multipart).
+4.  Dio sends a `POST /api/v1/issues` to the backend.
+5.  **Node.js backend handles Cloudinary upload and Firebase DB insertion.**
+6.  Backend returns the created `Issue` JSON.
+7.  Frontend updates the cached `IssueFeedProvider` state and pops the navigation stack.
+
+---
+
+## 4. API Integration Strategy
+
+**Base URL**: `http://localhost:5000/api/v1` (to be configured via `.env` for production).
+
+*   **API Client**: A singleton-like Riverpod Provider exposing a configured `Dio` instance.
+*   **Auth Interceptor**: Automatically reads the JWT from `flutter_secure_storage` and attaches it to the `Authorization: Bearer <token>` header for all protected routes.
+*   **Error Handling Interceptor**: 
+    *   Catches `401 Unauthorized`: Automatically clears secure storage and triggers a logout event.
+    *   Catches `400/500`: Parses the backend error JSON into an `ApiException` class to display friendly messages to the user.
+*   **Multipart Uploads**: Using Dio's `FormData.fromMap()` and `MultipartFile.fromFileSync()` to send image files exactly as the Express backend expects them.
+*   **Authority APIs**: 
+    *   `GET /api/v1/issues/authority/:authorityId` (Fetch issues assigned to authority)
+    *   `PATCH /api/v1/issues/:issueId/status` (Update resolution status)
+
+---
+
+## 5. State Management Strategy (Riverpod)
+
+To prevent scaling issues, state must be strictly segregated by context:
+
+*   **Global Auth State**: An `AsyncNotifierProvider` (`authProvider`) managing the current `User` session. The router observes this to enforce auth guards.
+*   **Public Issue Feed State**: `publicIssueFeedProvider` caches the global list of issues.
+*   **My Issues State**: `myIssuesProvider` caches issues reported by the logged-in student/user.
+*   **Authority Issues State**: `authorityIssuesProvider` manages issues assigned to the logged-in authority/officer.
+*   **Admin Analytics State**: `adminAnalyticsProvider` manages admin-only metrics.
+*   **Action Providers**: Localized state like `issueStatusUpdateProvider` for mutation loading/error states.
+
+---
+
+## 6. Navigation Architecture
+
+We will use `go_router` for declarative routing and deep linking support.
+
+**Routes & Structure**:
+*   `/splash` (Initial Route: Checks token validity)
+*   `/login`
+*   `/register`
+*   `/app` (Bottom Navigation Shell for Users)
+    *   `/app/home` (Issue Feed)
+    *   `/app/my-issues`
+    *   `/app/profile`
+*   `/app/authority` (Authority Dashboard)
+    *   `/app/authority/issues` (Assigned Issues)
+*   `/app/admin` (Admin Panel)
+*   `/issues/create` (Pushed over the shell)
+*   `/issues/:id` (Issue Details, passed via path parameter)
+
+**Auth & Role Guards**: 
+The router checks the `user.role` from `authProvider`.
+*   Students/Faculty cannot access `/app/authority/*` or `/app/admin/*`.
+*   Authority users cannot access `/app/admin/*`.
+*   Unauthorized access redirects to `/login` or a "Forbidden" screen.
+
+---
+
+## 7. Permission Architecture (Frontend)
+
+Permissions on the frontend serve only for UX (hiding buttons, restricting routes). **The backend remains the strict source of truth for authorization.**
+*   **Role → Allowed Screens → Allowed Actions**:
+    *   **User**: Can access `/home`, `/my-issues`, `/issues/create`. Actions: view public feed, create issue.
+    *   **Officer**: Can access `/app/authority/*`. Actions: view assigned issues, update issue status.
+    *   **Admin**: Can access `/app/admin/*`. Actions: view analytics, manage system.
+
+---
+
+## 8. Future UI Screens
+
+To prevent future restructuring, the following screens are planned in the architecture:
+*   **Authority Dashboard**: Overview of assigned, resolved, and pending issues metrics.
+*   **Assigned Issues List**: Filterable list for the officer to find specific tasks.
+*   **Update Status Screen/Modal**: UI for officers to manage resolution progress.
+*   **Analytics View**: Admin-level reporting.
+
+---
+
+## 9. Folder Structure
+
+```text
+lib/
+├── core/
+│   ├── api/             
+│   ├── errors/          
+│   ├── router/          
+│   ├── storage/         
+│   ├── theme/           
+│   └── utils/           
+├── features/
+│   ├── auth/            # Login/Register screens, controllers
+│   ├── issues/          # Feed, Create, Details screens, widgets
+│   ├── authority/       # Authority Dashboard, Assigned Issues, Status Updates
+│   ├── admin/           # Analytics, System Management
+│   └── profile/         # User Profile
+├── shared/              
+├── app.dart             
+└── main.dart            
+```
+
+---
+
+## 10. Backend Contract Mapping
+
+Using the provided backend JSON contract, data will map to a Dart Model via `freezed` and `json_serializable`.
+
+**Backend JSON:**
+```json
+{
+  "issueId": "issue_001",
+  "title": "WiFi not working",
+  "description": "Internet down in Block A",
+  "categoryId": "wifi",
+  "status": "reported",
+  "urgency": "medium",
+  "assignedAuthority": {
+    "authorityId": "authority_001",
+    "name": "IT / Network Department"
+  },
+  "imageUrls": [],
+  "createdBy": {},
+  "createdAt": 1710000000 
+}
+```
+
+**Dart Mapping Strategy:**
+*   `issueId` -> `String id` (using `@JsonKey(name: 'issueId')`)
+*   `status` / `urgency` -> Mapped to Dart `enum`s with `@JsonEnum()`.
+*   `assignedAuthority` -> Nested `Authority` Freezed class.
+*   `createdAt` -> The backend returns a Unix timestamp integer. A custom `JsonConverter` automatically maps the `int` to a Dart `DateTime` object.
+
+---
+
+## 11. Recommended Package List
+
+*   **`flutter_riverpod` & `riverpod_annotation`**: State management.
+*   **`dio`**: Robust HTTP client for API integration and multipart uploads.
+*   **`go_router`**: Navigation, auth guards, and deep linking.
+*   **`flutter_secure_storage`**: Secure local storage for JWTs.
+*   **`freezed` & `json_serializable`**: Boilerplate-free immutable data models.
+*   **`image_picker`**: Device camera and gallery access for issue attachments.
+*   **`cached_network_image`**: Performant caching for images.
+*   **`intl`**: Date and time formatting.
