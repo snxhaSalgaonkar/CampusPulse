@@ -65,7 +65,7 @@ class AdminDashboard extends StatelessWidget {
 
   Widget _buildStatCard(BuildContext context, String title, String value, Color color) {
     return Card(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1),
       elevation: 0,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
